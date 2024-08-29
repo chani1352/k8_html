@@ -1,33 +1,160 @@
-header {
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box; /* padding 시 box사이즈 안에 */
+}
+
+header, main, footer {
+  width: 80%;
+  margin-left: 10%;
+}
+
+main, footer {
+  padding: 20px;
+}
+
+header, main {
   background-color: aliceblue;
 }
 
-main{
-  background-color: aliceblue;
-}
-
-footer{
+footer {
   background-color: black;
   color: white;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-#menu > li{
-  background-color: blue;
+header, header ul {
+  display: flex; /* box 위치 변경할때 */
+  flex-direction: row;  /* box 위치 가로로 row, 세로는 column */
+  justify-content:space-between; /* box 간 위치 설정 */
+  align-items: center;
+}
+
+header {
+  height: 80px;
+  padding: 20px;
+}
+
+ul {
+  list-style:  none;
+}
+
+.menuLi {
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  background-color: royalblue;
+  border-radius: 10px; /* box 라운드 줄때 */
+}
+
+.menuLi:hover {
+  background-color: chocolate;
+}
+
+a {
+  text-decoration: none;
   color: white;
 }
 
-#menu > a{
-  color: white;
+/* 이미지 추가 시 속성 주기 */
+/* a > img {
+  width: 20px;
+  height: 20px;
+} */
+
+article {
+  padding: 60px;
+}
+
+h1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+
+article > p{
+  padding: 20px;
+}
+
+span {
+  color: red;
 }
 
 section {
+  margin: 20px;
+  padding: 20px 40px;  /*위아래  오른쪽왼쪽 */
   background-color: white;
+  border-radius: 15px;
 }
 
-.s1 {
-  background-color: aqua;
+h2 {
+  padding-bottom: 20px;
 }
 
-.s2 {
-  background-color: aquamarine;
+.secDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.secDiv > div {
+  width: 20%;
+}
+
+.secDiv img {
+  width: 80%;
+  border-radius: 50%;
+}
+
+.secDiv > p {
+  width: 80%;
+  font-size:medium;
+  color:  gray;
+}
+
+/*방향에 따라 just~ align ~ 수직 수평 정렬 바뀜 box*/
+footer > ul {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+}
+
+/*box 테두리 색상 적용 */
+footer li {
+  border: 1px dotted white;
+}
+
+/*페이지 사이즈가 1024px사이즈로 이하로 줄었을때 아래 간격 적용 */
+@media screen and (max-width : 1024px) {
+  header, main, footer {
+    width: 100%;
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width : 768px) {
+  header, header ul {
+    display: flex;
+    flex-direction: column; 
+    justify-content:space-between;
+    align-items: center;
+    width : 100%;
+  }
+  header {
+    height: auto;
+    padding: 20px;
+
+  }
+
+  header li{
+    width: 90%;
+    margin-bottom: 5px;
+    text-align: center;
+  }
 }
