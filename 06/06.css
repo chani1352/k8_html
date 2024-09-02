@@ -1,0 +1,26 @@
+section > div {
+  border: 1px dotted darkgray;
+}
+
+
+
+section > div {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  font-weight: bold;
+}
+
+#a {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+#msg1 > img, #msg2 > img {
+  margin-top: 20px;
+}
+
+#bt1, #bt2, #bt3,#bt4,#bt5,#bt6 {
+  margin-right: 10px;
+}
