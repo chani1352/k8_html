@@ -1,44 +1,23 @@
-document.addEventListener('DOMContentLoaded', ()=>{
-  const bt1 = document.querySelector('#bt1');
-  const bt2 = document.querySelector('#bt2');
-  const bt3 = document.querySelector('#bt3');
-  const bt4 = document.querySelector('#bt4');
-  const bt5 = document.querySelector('#bt5');
-  const bt6 = document.querySelector('#bt6');
-  const img1 = document.querySelector('#msg1 > img');
-  const img2 = document.querySelector('#msg2 > img');
+document.addEventListener('DOMContentLoaded', () => {
+  const imgs = document.querySelectorAll('.dice > img');
+  const bts = document.querySelectorAll('button');
   const result = document.querySelector('#result');
 
-
-  bt1.addEventListener('click', ()=>{
-    let n = Math.floor(Math.random() * 6) + 1;
-    img1.setAttribute('src', `../img/${n}.png`);
-    img2.setAttribute('src', `../img/1.png`);
-    
-  });
-  bt2.addEventListener('click', ()=>{
-    let n = Math.floor(Math.random() * 6) + 1;
-    img1.setAttribute('src', `../img/${n}.png`);
-    img2.setAttribute('src', `../img/2.png`);
-  });
-  bt3.addEventListener('click', ()=>{
-    let n = Math.floor(Math.random() * 6) + 1;
-    img1.setAttribute('src', `../img/${n}.png`);
-    img2.setAttribute('src', `../img/3.png`);
-  });
-  bt4.addEventListener('click', ()=>{
-    let n = Math.floor(Math.random() * 6) + 1;
-    img1.setAttribute('src', `../img/${n}.png`);
-    img2.setAttribute('src', `../img/4.png`);
-  });
-  bt5.addEventListener('click', ()=>{
-    let n = Math.floor(Math.random() * 6) + 1;
-    img1.setAttribute('src', `../img/${n}.png`);
-    img2.setAttribute('src', `../img/5.png`);
-  });
-  bt6.addEventListener('click', ()=>{
-    let n = Math.floor(Math.random() * 6) + 1;
-    img1.setAttribute('src', `../img/${n}.png`);
-    img2.setAttribute('src', `../img/6.png`);
-  });
+  for (let bt of bts) {
+    // console.log(bt);
+    bt.addEventListener('click', () => {
+      let n = Math.floor(Math.random() * 6) + 1;
+      let m = parseInt(bt.textContent.charAt(0)); //parseInt 문자를 숫자로
+      imgs[0].setAttribute('src', `../img/${n}.png`);
+      imgs[0].setAttribute('alt', `${n}.png`);
+      imgs[1].setAttribute('src', `../img/${m}.png`);
+      imgs[1].setAttribute('alt', `${m}.png`);
+      if (n === m) {
+        result.innerHTML = '맞춤';
+      } else {
+        result.innerHTML = '틀림';
+      }
+      //  console.log(bt.textContent.charAt(0)); //charAt(0) 글의 첫번째 가져옴
+    });
+  }
 });

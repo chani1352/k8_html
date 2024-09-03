@@ -1,26 +1,30 @@
-section > div {
-  border: 1px dotted darkgray;
+main > div {
+  border: 1px dotted black;
 }
 
-
-
-section > div {
+.dice {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 20px;
   font-weight: bold;
 }
 
-#a {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-}
-
-#msg1 > img, #msg2 > img {
+.dice > img {
   margin-top: 20px;
 }
 
-#bt1, #bt2, #bt3,#bt4,#bt5,#bt6 {
+
+button {
   margin-right: 10px;
+}
+
+#result {
+  width: 90%;
+  height: 40px;
+  border: 1px dotted black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
