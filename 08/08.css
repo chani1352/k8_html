@@ -1,0 +1,33 @@
+section {
+  border: 1px dotted black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+#updown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+#sec {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+}
+
+button {
+  margin-left: 5px;
+}
+
+#input {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}

@@ -23,16 +23,27 @@
 }
 
 select {
-  width: 60%;
+  width: 80%;
   height: 40px;
 }
 
-#txt1 {
-  background-color: orange;
+input {
+  width: 70%;
   height: 40px;
+}
+
+label {
+  width: 10%;
+  height: 40px;
+  padding-left: 10px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: bold;
 }
 
 #txt2 {
-  background-color: orange;
-  height: 40px;
+  background-color: antiquewhite;
 }
