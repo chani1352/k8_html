@@ -37,6 +37,7 @@ main {
 section {
   margin: 5px;
   width: 100%;
+
 }
 
 button {
@@ -52,4 +53,10 @@ button {
 button:hover {
   font-weight: bold;
   color: white;
+}
+
+section > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
