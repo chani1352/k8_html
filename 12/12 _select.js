@@ -1,10 +1,13 @@
   //OPEN API 데이터 가져오기
-  const getData = (selDt,ul) =>{
-    console.log(selDt);
+  const getData = (selDt,ul,selNa) =>{
     const testAPI = '82ca741a2844c5c180a208137bb92bd7';
 
     let url = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?`;
     url = `${url}key=${testAPI}&targetDt=${selDt}`;
+
+    if(selNa != 'T'){
+      url = `${url}&repNationCd=${selNa}`;
+    }
 
     fetch(url)
       .then(resp => resp.json())
@@ -16,13 +19,16 @@
             <span class='rank'>${item.rank}</span>
             <span class='movieNm'>${item.movieNm}</span>
             <span class='openDt'>${item.openDt}</span>
+            <span class='rankInten'>
+            ${item.rankInten < 0 ? '<span class="spBlue">▼</span>' + item.rankInten.slice(-1) : item.rankInten == 0 ? '-' : '<span class="spRed">▲</span>' + item.rankInten}
+            </span>
             </li>`)
           ul.innerHTML = tm.join('');
         })
       .catch(err => console.error(err));
-
-
   }
+  // ${item.rankInten > 0 ? '<span class="spRed">▲</span>' : item.rankInten < 0 ? '<span class="spBlue">▼</span>' : '-'}
+  // ${item.rankInten != 0 ? Math.abs(item.rankInten) : ''}
   
   
   //어제 날짜 구하기 함수
@@ -46,10 +52,12 @@
 
   }
 
+
 document.addEventListener('DOMContentLoaded', ()=>{
 
   const dt = document.querySelector('#dt');
   const ul = document.querySelector('.sec > ul');
+  const sel = document.querySelector('#Na');
 
   //어제 날짜 구하기
   let yesterday = getYesterday();   // 함수에서 return해서 값을 가져옴
@@ -58,10 +66,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
 //date요소 최대값 설정
   dt.max = yesterday;
 
+  //data 기본값
+  dt.value = yesterday;
+  getData(dt.value.replaceAll('-',''), ul,sel.value);
+
   dt.addEventListener('change',()=>{
-    getData(dt.value.replaceAll('-',''), ul);
+    getData(dt.value.replaceAll('-',''), ul,sel.value);
   });
 
+  sel.addEventListener('change', ()=>{
+    getData(dt.value.replaceAll('-',''), ul,sel.value);
+  });
 
 
 });

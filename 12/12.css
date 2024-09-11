@@ -10,24 +10,46 @@
 
 }
 
-.sec {
+section {
   width: 80%;
-  border: 1px dotted black;
 }
 
-.divDt {
-  height: 60px;
+#secSE {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items:center ;
   background-color : darkgray ;
+
+}
+
+
+.divDt, .divNa {
+  width: 80%;
+  height: 60px;
+
 }
 
 .boxofficeRank {
   height: 40px;
 }
 
-input[type=date] {
-  width: 40%;
+input[type=date],select, fieldset {
+  width: 60%;
   height: 30px;
+  margin-left: 5px;
 }
+
+input[type=radio] {
+  margin-left: 10px;
+}
+
+fieldset {
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
 
 ul {
   display: flex;
@@ -65,4 +87,25 @@ ul {
   color: white;
   border-radius: 10%;
   margin-right: 5px;
+}
+
+.movieNm {
+  width: 60%;
+}
+
+.openDt {
+  width: 30%;
+}
+
+.spBlue {
+  color: blue;
+}
+
+.spRed {
+  color: red;
+}
+
+label {
+  margin-right: 5px;
+  margin-left: 2px;
 }
