@@ -1,4 +1,4 @@
-#boxofficeMain {
+#boxofficeMain, #mvfooter {
   display: flex;
 
   flex-direction: column;
@@ -6,8 +6,23 @@
   align-items: center;
 
   border: 1px dotted black;
-  height: 500px;
+}
 
+#boxofficeMain {
+  height: 500px;
+}
+
+#mvfooter {
+  height: 100px;
+  background-color :darkgray;
+  width: 60%;
+  margin-left: 20%;
+
+  display: flex;
+  justify-content: center;
+  align-items: start;
+
+  padding: 20px;
 }
 
 section {
@@ -51,7 +66,7 @@ fieldset {
   align-items: center;
 } 
 
-ul {
+ul > a {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -109,3 +124,23 @@ label {
   margin-right: 5px;
   margin-left: 2px;
 }
+
+a { 
+  text-decoration: none;
+}
+
+.in1 {
+  font-weight: bold;
+  color : white;
+}
+
+.in2 {
+  font-weight: bold;
+  font-size: small;
+}
+
+.info {
+  font-size: small;
+  text-decoration :underline
+}
+

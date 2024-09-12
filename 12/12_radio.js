@@ -1,7 +1,41 @@
-//OPEN API 데이터 가져오기
-const getData = (selDt, ul, selNa) => {
-  const testAPI = '82ca741a2844c5c180a208137bb92bd7';
+//전역변수
+const testAPI = '82ca741a2844c5c180a208137bb92bd7';
 
+//OPEN API 데이터 가져오기
+const getDetail = (movieCd) => {
+  const mvinfo = document.querySelector('#mvinfo');
+  let url = `https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?`;
+  url = `${url}key=${testAPI}&movieCd=${movieCd}`;
+
+  fetch(url)
+    //.then(resp => resp.json())
+    .then(resp => resp.json())
+    .then(data =>{
+      console.log(data);
+      let movieInfo = data.movieInfoResult.movieInfo;
+      let company = movieInfo.companys[0].companyNm;
+      let dir = movieInfo.directors[0].peopleNm;
+      let genres = movieInfo.genres.map(item=>item.genreNm).join(',');
+      let actors = movieInfo.actors.slice(0,3).map(item=>item.peopleNm).join(',');
+
+      // let actors = data.movieInfoResult.movieInfo.actors;
+      // let ac=[];
+      // for (i = 0 ;  i < 4 ; i++) {
+      //   if(actors[i] != null)
+      //     ac[i] = `<span class="info">${actors[i].peopleNm}</span>`;
+      // }
+
+      mvinfo.innerHTML = `<span class="in1">감독 : </span>  <span class="info">${dir}</span><br>
+                          <span class="in1">배우 : </span>  <span class="info">${actors}</span><br>
+                          <span class="in1">장르 : </span>  <span class="info">${genres}</span><br>
+                          <span class="in1">제작사 :</span> <span class="info">${company}</span>
+                          `
+
+    })
+    .catch(err => console.error(err));
+}
+
+const getData = (selDt, ul, selNa) => {
   let url = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?`;
   url = `${url}key=${testAPI}&targetDt=${selDt}`;
 
@@ -9,23 +43,31 @@ const getData = (selDt, ul, selNa) => {
     url = `${url}&repNationCd=${selNa}`;
   }
 
+
   fetch(url)
     .then(resp => resp.json())
     // .then(data => console.log(data.boxOfficeResult))
     .then(data => {
       let dailyBoxOfficeList = data.boxOfficeResult.dailyBoxOfficeList;
+
       let tm = dailyBoxOfficeList.map(item =>
-        `<li class='mvli'>
+        `<a href="#" onCLick="getDetail(${item.movieCd})">
+         <li class='mvli'>
             <span class='rank'>${item.rank}</span>
             <span class='movieNm'>${item.movieNm}</span>
             <span class='openDt'>${item.openDt}</span>
             <span class='rankInten'>
             ${item.rankInten < 0 ? '<span class="spBlue">▼</span>' + item.rankInten.slice(-1) : item.rankInten == 0 ? '-' : '<span class="spRed">▲</span>' + item.rankInten}
             </span>
-            </li>`)
+         </li>
+        </a>`)
       ul.innerHTML = tm.join('');
     })
     .catch(err => console.error(err));
+
+
+
+
 }
 // ${item.rankInten > 0 ? '<span class="spRed">▲</span>' : item.rankInten < 0 ? '<span class="spBlue">▼</span>' : '-'}
 // ${item.rankInten != 0 ? Math.abs(item.rankInten) : ''}
@@ -70,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dt = document.querySelector('#dt');
   const ul = document.querySelector('.sec > ul');
+  const mvinfo = document.querySelector('#mvinfo');
   const ra = document.querySelectorAll('input[type=radio]');  //radio버튼 여러개일때 다른 radio랑 구분 안됨
   //const ra = document.getElementsByName('nation'); name으로 가져옴
   //const ra = document.querySelectorAll("input[name=nation]"); 속성 값 name으로 
@@ -90,11 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
   getData(dt.value.replaceAll('-', ''), ul, getSelNa());
 
   dt.addEventListener('change', () => {
+    mvinfo.innerHTML = '';
     getData(dt.value.replaceAll('-', ''), ul, getSelNa());
   });
 
   for (let a of ra) {
     a.addEventListener('click', () => {
+      mvinfo.innerHTML = '';
       getData(dt.value.replaceAll('-', ''), ul, a.value);
     });
   }

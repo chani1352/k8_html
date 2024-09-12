@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=>{
 
-  const img = document.querySelector('img');
+  const img = document.querySelector('#img1 > img');
   const txt = document.querySelector('#txt');
   const bt = document.querySelector('#bt');
 
